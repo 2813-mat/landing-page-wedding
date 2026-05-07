@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laço — Planeje seu casamento sem estresse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF8F5;
+    --stone: #E8E4DE;
+    --taupe: #B8AFA6;
+    --ink: #1A1714;
+    --ink-light: #3D3730;
+    --blush: #D4A090;
+    --blush-light: #EDD5CD;
+    --gold: #C9A96E;
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: rgba(250,248,245,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-bottom-color: var(--stone); }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--blush); }
+
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blush); }
+
+  .btn-nav {
+    background: var(--ink);
+    color: var(--cream) !important;
+    padding: 0.6rem 1.4rem;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .btn-nav:hover { background: var(--blush) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 6rem 4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blush);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 2rem; height: 1px;
+    background: var(--blush);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 1.8rem;
+    opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--blush);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ink-light);
+    max-width: 28rem;
+    margin-bottom: 3rem;
+    opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .hero-cta {
+    display: flex; gap: 1rem; align-items: center;
+    opacity: 0; animation: fadeUp 0.8s 0.65s forwards;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--white);
+    padding: 1rem 2.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    border: none; cursor: pointer;
+    border-radius: 2px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--blush); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: var(--ink-light);
+    font-size: 0.85rem;
+    font-weight: 400;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--blush); }
+  .btn-ghost::after { content: '→'; transition: transform 0.2s; }
+  .btn-ghost:hover::after { transform: translateX(3px); }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--stone);
+    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--taupe);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    opacity: 0; animation: fadeIn 1.2s 0.4s forwards;
+  }
+
+  .hero-visual {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--blush-light) 0%, var(--stone) 60%, #E2D8D0 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .hero-card-stack {
+    position: relative;
+    width: 340px; height: 440px;
+  }
+
+  .mock-card {
+    position: absolute;
+    background: var(--white);
+    border-radius: 4px;
+    box-shadow: 0 8px 40px rgba(26,23,20,0.12);
+    padding: 1.8rem;
+    width: 280px;
+  }
+  .mock-card:nth-child(1) {
+    top: 20px; left: 0;
+    transform: rotate(-3deg);
+    opacity: 0.7;
+  }
+  .mock-card:nth-child(2) {
+    top: 60px; left: 30px;
+    transform: rotate(1deg);
+    z-index: 2;
+    width: 300px;
+  }
+  .mock-card:nth-child(3) {
+    top: 120px; right: 0;
+    transform: rotate(4deg);
+    opacity: 0.5;
+    z-index: 1;
+  }
+
+  .mock-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blush);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+  .mock-title-bar { height: 8px; background: var(--stone); border-radius: 4px; margin-bottom: 1rem; width: 70%; }
+  .mock-line { height: 6px; background: var(--stone); border-radius: 3px; margin-bottom: 0.5rem; }
+  .mock-line.short { width: 55%; }
+  .mock-line.med { width: 80%; }
+  .mock-dots {
+    display: flex; gap: 0.4rem; margin-top: 1rem;
+  }
+  .mock-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--stone);
+  }
+  .mock-dot.active { background: var(--blush); }
+  .mock-progress {
+    height: 4px; background: var(--stone); border-radius: 2px;
+    margin-top: 1.2rem; overflow: hidden;
+  }
+  .mock-fill { height: 100%; width: 68%; background: var(--blush); border-radius: 2px; }
+
+  /* LOGOS */
+  .logos-bar {
+    padding: 2.5rem 4rem;
+    border-top: 1px solid var(--stone);
+    border-bottom: 1px solid var(--stone);
+    display: flex; align-items: center; gap: 4rem;
+    overflow: hidden;
+  }
+  .logos-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .logos-track {
+    display: flex; gap: 4rem; align-items: center;
+    overflow: hidden;
+  }
+  .logo-item {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--taupe);
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+  }
+
+  /* FEATURES */
+  .features {
+    padding: 8rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+    align-items: end;
+  }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blush);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .section-title em { font-style: italic; color: var(--blush); }
+
+  .section-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--ink-light);
+    font-weight: 300;
+    align-self: end;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--stone);
+  }
+
+  .feature-card {
+    background: var(--cream);
+    padding: 2.5rem;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .feature-card:hover { background: var(--white); }
+
+  .feature-icon {
+    width: 40px; height: 40px;
+    border: 1px solid var(--stone);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .feature-card:hover .feature-icon {
+    border-color: var(--blush);
+    background: var(--blush-light);
+  }
+
+  .feature-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.01em;
+  }
+
+  .feature-desc {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--taupe);
+    font-weight: 300;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    padding: 8rem 4rem;
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  .how-inner { max-width: 1200px; margin: 0 auto; }
+
+  .how .section-title { color: var(--cream); }
+  .how .section-eyebrow { color: var(--blush); }
+  .how .section-desc { color: var(--taupe); }
+  .how .section-header { margin-bottom: 5rem; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 1.5rem; left: 12%; right: 12%;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    z-index: 0;
+  }
+
+  .step {
+    text-align: center;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-num {
+    width: 3rem; height: 3rem;
+    border: 1px solid rgba(212,160,144,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--blush);
+    background: var(--ink);
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+  }
+
+  .step-desc {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--taupe);
+    font-weight: 300;
+  }
+
+  /* PRICING */
+  .pricing {
+    padding: 8rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--stone);
+    margin-top: 5rem;
+  }
+
+  .plan {
+    background: var(--cream);
+    padding: 3rem 2.5rem;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .plan:hover { background: var(--white); }
+  .plan.featured {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .plan.featured:hover { background: #261F18; }
+
+  .plan-badge {
+    position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+    background: var(--blush);
+    color: var(--white);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+    font-weight: 500;
+  }
+
+  .plan-name {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 1.5rem;
+  }
+  .plan.featured .plan-name { color: rgba(212,160,144,0.7); }
+
+  .plan-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .plan.featured .plan-price { color: var(--cream); }
+  .plan-price sup { font-size: 1.2rem; vertical-align: super; }
+  .plan-price span { font-size: 1rem; color: var(--taupe); font-family: 'DM Sans', sans-serif; }
+
+  .plan-period {
+    font-size: 0.8rem;
+    color: var(--taupe);
+    margin-bottom: 2.5rem;
+  }
+
+  .plan-divider {
+    height: 1px;
+    background: var(--stone);
+    margin-bottom: 2rem;
+  }
+  .plan.featured .plan-divider { background: rgba(255,255,255,0.1); }
+
+  .plan-features { list-style: none; margin-bottom: 2.5rem; }
+  .plan-features li {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    padding: 0.5rem 0;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .plan.featured .plan-features li { color: rgba(250,248,245,0.75); }
+  .plan-features li::before {
+    content: '✓';
+    color: var(--blush);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+  .plan-features li.muted { color: var(--taupe); }
+  .plan-features li.muted::before { color: var(--stone); }
+  .plan.featured .plan-features li.muted { color: rgba(255,255,255,0.3); }
+
+  .btn-plan {
+    display: block;
+    text-align: center;
+    padding: 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .plan .btn-plan {
+    border: 1px solid var(--stone);
+    color: var(--ink);
+    background: transparent;
+  }
+  .plan .btn-plan:hover { border-color: var(--ink); background: var(--ink); color: var(--white); }
+  .plan.featured .btn-plan {
+    background: var(--blush);
+    color: var(--white);
+    border: 1px solid var(--blush);
+  }
+  .plan.featured .btn-plan:hover { background: #C08878; border-color: #C08878; }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 8rem 4rem;
+    background: var(--stone);
+  }
+  .test-inner { max-width: 1200px; margin: 0 auto; }
+  .test-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+  .test-card {
+    background: var(--cream);
+    padding: 2.5rem;
+    border-radius: 2px;
+  }
+  .test-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .test-quote::before { content: '"'; color: var(--blush); font-size: 1.5rem; }
+  .test-author { display: flex; align-items: center; gap: 0.8rem; }
+  .test-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--blush-light);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--blush);
+  }
+  .test-name { font-size: 0.85rem; font-weight: 500; color: var(--ink); }
+  .test-role { font-size: 0.75rem; color: var(--taupe); }
+
+  /* CTA */
+  .cta-section {
+    padding: 8rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 100%, var(--blush-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-inner { max-width: 600px; margin: 0 auto; position: relative; z-index: 1; }
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .cta-title em { font-style: italic; color: var(--blush); }
+  .cta-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  .cta-input-group {
+    display: flex; gap: 0;
+    max-width: 420px;
+    margin: 0 auto 1rem;
+    border: 1px solid var(--stone);
+    background: var(--white);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .cta-input-group:focus-within { border-color: var(--blush); }
+  .cta-input {
+    flex: 1;
+    padding: 0.9rem 1.2rem;
+    border: none; outline: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    background: transparent;
+    color: var(--ink);
+  }
+  .cta-btn {
+    padding: 0.9rem 1.5rem;
+    background: var(--ink);
+    color: var(--white);
+    border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: var(--blush); }
+  .cta-note { font-size: 0.75rem; color: var(--taupe); }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--stone);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: 0.08em;
+  }
+  .footer-logo span { color: var(--blush); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    font-size: 0.78rem;
+    color: var(--taupe);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--ink); }
+  .footer-copy { font-size: 0.75rem; color: var(--taupe); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 7rem 1.5rem 3rem; }
+    .hero-right { height: 320px; }
+    .section-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .features, .pricing { padding: 4rem 1.5rem; }
+    .features-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .steps::before { display: none; }
+    .how { padding: 4rem 1.5rem; }
+    .test-grid { grid-template-columns: 1fr; }
+    .testimonials { padding: 4rem 1.5rem; }
+    .cta-section { padding: 5rem 1.5rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem 1.5rem; }
+    .logos-bar { padding: 1.5rem; gap: 1.5rem; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Laç<span>o</span></a>
+  <ul class="nav-links">
+    <li><a href="#funcionalidades">Funcionalidades</a></li>
+    <li><a href="#como-funciona">Como funciona</a></li>
+    <li><a href="#precos">Preços</a></li>
+    <li><a href="#" class="btn-nav">Começar grátis</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Planejamento de casamento</p>
+    <h1 class="hero-title">
+      Seu grande dia,<br>
+      <em>organizado</em><br>
+      do início ao fim.
+    </h1>
+    <p class="hero-sub">
+      Gerencie convidados, fornecedores, orçamento e cronograma num só lugar. Sem planilhas. Sem stress.
+    </p>
+    <div class="hero-cta">
+      <a href="#precos" class="btn-primary">Começar gratuitamente</a>
+      <a href="#como-funciona" class="btn-ghost">Ver como funciona</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">2.4k+</div>
+        <div class="stat-label">Casamentos planejados</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Satisfação dos noivos</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">40h</div>
+        <div class="stat-label">Economizadas em média</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-card-stack">
+        <div class="mock-card">
+          <div class="mock-tag">Fornecedores</div>
+          <div class="mock-title-bar"></div>
+          <div class="mock-line med"></div>
+          <div class="mock-line short"></div>
+          <div class="mock-line med"></div>
+          <div class="mock-dots">
+            <div class="mock-dot active"></div>
+            <div class="mock-dot active"></div>
+            <div class="mock-dot"></div>
+          </div>
+        </div>
+        <div class="mock-card">
+          <div class="mock-tag">Orçamento total</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#1A1714;margin-bottom:0.5rem">R$ 48.500</div>
+          <div class="mock-line med"></div>
+          <div class="mock-line short"></div>
+          <div class="mock-progress"><div class="mock-fill"></div></div>
+          <div style="font-size:0.7rem;color:#B8AFA6;margin-top:0.5rem">68% utilizado</div>
+          <div class="mock-dots" style="margin-top:1rem">
+            <div class="mock-dot active"></div>
+            <div class="mock-dot active"></div>
+            <div class="mock-dot active"></div>
+            <div class="mock-dot"></div>
+          </div>
+        </div>
+        <div class="mock-card">
+          <div class="mock-tag">Convidados</div>
+          <div class="mock-title-bar"></div>
+          <div class="mock-line short"></div>
+          <div class="mock-line med"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos-bar">
+  <span class="logos-label">Usado por noivos em todo o Brasil</span>
+  <div class="logos-track">
+    <span class="logo-item">São Paulo</span>
+    <span class="logo-item">Rio de Janeiro</span>
+    <span class="logo-item">Belo Horizonte</span>
+    <span class="logo-item">Curitiba</span>
+    <span class="logo-item">Porto Alegre</span>
+    <span class="logo-item">Brasília</span>
+    <span class="logo-item">Salvador</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="funcionalidades">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-eyebrow">Funcionalidades</p>
+      <h2 class="section-title">Tudo que você<br>precisa em um <em>lugar só</em></h2>
+    </div>
+    <p class="section-desc">
+      Desenvolvido pensando na jornada completa do casal — desde o "sim" até o grande dia, cada detalhe no seu controle.
+    </p>
+  </div>
+  <div class="features-grid reveal">
+    <div class="feature-card">
+      <div class="feature-icon">💌</div>
+      <h3 class="feature-name">Gestão de Convidados</h3>
+      <p class="feature-desc">Lista completa com confirmações, mesas, restrições alimentares e envio de convites digitais.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <h3 class="feature-name">Controle de Orçamento</h3>
+      <p class="feature-desc">Visão clara de entradas, despesas e saldo. Nunca mais perca o controle dos gastos do casamento.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤝</div>
+      <h3 class="feature-name">Gerenciamento de Fornecedores</h3>
+      <p class="feature-desc">Centralize contratos, contatos e pagamentos de buffet, fotógrafo, floricultura e mais.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <h3 class="feature-name">Cronograma do Evento</h3>
+      <p class="feature-desc">Monte o roteiro completo do dia, hora a hora, e compartilhe com toda a equipe de apoio.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✅</div>
+      <h3 class="feature-name">Checklists Inteligentes</h3>
+      <p class="feature-desc">Listas de tarefas pré-configuradas com base na data do casamento, para nada ser esquecido.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👥</div>
+      <h3 class="feature-name">Colaboração em Casal</h3>
+      <p class="feature-desc">Ambos os noivos e os pais podem acessar e contribuir em tempo real, de qualquer dispositivo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="como-funciona">
+  <div class="how-inner">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-eyebrow">Como funciona</p>
+        <h2 class="section-title">Simples do<br>começo ao <em>altar</em></h2>
+      </div>
+      <p class="section-desc">Em minutos você já tem tudo configurado e começa a planejar com clareza.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Crie sua conta</h3>
+        <p class="step-desc">Cadastro em 30 segundos. Informe a data do casamento e o sistema já monta seu cronograma.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Adicione os detalhes</h3>
+        <p class="step-desc">Importe sua lista de convidados, insira fornecedores e defina o orçamento total disponível.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Planeje em conjunto</h3>
+        <p class="step-desc">Convide seu par e familiares. Todos têm acesso e podem colaborar em tempo real.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3 class="step-title">Aproveite o dia</h3>
+        <p class="step-desc">Com tudo organizado, você chega no grande dia leve, confiante e pronto para celebrar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="precos">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-eyebrow">Planos</p>
+      <h2 class="section-title">Invista no que<br>importa de <em>verdade</em></h2>
+    </div>
+    <p class="section-desc">Planos transparentes sem surpresas. Cancele quando quiser, sem burocracia.</p>
+  </div>
+  <div class="pricing-grid reveal">
+    <div class="plan">
+      <p class="plan-name">Básico</p>
+      <div class="plan-price"><sup>R$</sup>0<span>/mês</span></div>
+      <p class="plan-period">Para começar a explorar</p>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Até 50 convidados</li>
+        <li>Checklist essencial</li>
+        <li>1 usuário colaborador</li>
+        <li class="muted">Controle de orçamento</li>
+        <li class="muted">Gestão de fornecedores</li>
+        <li class="muted">Cronograma do evento</li>
+      </ul>
+      <a href="#" class="btn-plan">Criar conta grátis</a>
+    </div>
+    <div class="plan featured">
+      <span class="plan-badge">Mais popular</span>
+      <p class="plan-name">Casal</p>
+      <div class="plan-price"><sup>R$</sup>29<span>/mês</span></div>
+      <p class="plan-period">Tudo que o casal precisa</p>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Convidados ilimitados</li>
+        <li>Checklists completos</li>
+        <li>5 usuários colaboradores</li>
+        <li>Controle de orçamento</li>
+        <li>Gestão de fornecedores</li>
+        <li>Cronograma do evento</li>
+      </ul>
+      <a href="#" class="btn-plan">Começar agora</a>
+    </div>
+    <div class="plan">
+      <p class="plan-name">Premium</p>
+      <div class="plan-price"><sup>R$</sup>59<span>/mês</span></div>
+      <p class="plan-period">Para casamentos especiais</p>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li>Tudo do plano Casal</li>
+        <li>Colaboradores ilimitados</li>
+        <li>Suporte prioritário</li>
+        <li>Exportação em PDF</li>
+        <li>Relatórios avançados</li>
+        <li>Acesso vitalício pós-casamento</li>
+      </ul>
+      <a href="#" class="btn-plan">Assinar Premium</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="test-inner">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-eyebrow">Depoimentos</p>
+        <h2 class="section-title">O que os<br>noivos <em>dizem</em></h2>
+      </div>
+      <p class="section-desc">Casais reais que usaram o Laço para planejar o dia mais especial das suas vidas.</p>
+    </div>
+    <div class="test-grid reveal">
+      <div class="test-card">
+        <p class="test-quote">Conseguimos organizar 280 convidados sem estresse. O controle de orçamento nos salvou de estourar o limite várias vezes.</p>
+        <div class="test-author">
+          <div class="test-avatar">A</div>
+          <div>
+            <div class="test-name">Ana & Rafael</div>
+            <div class="test-role">Casados em março de 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">A funcionalidade de cronograma é incrível. Compartilhamos com nossos fornecedores e todos sabiam exatamente o que fazer no dia.</p>
+        <div class="test-author">
+          <div class="test-avatar">C</div>
+          <div>
+            <div class="test-name">Camila & Thiago</div>
+            <div class="test-role">Casados em julho de 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <p class="test-quote">Estávamos perdidos com tantas planilhas. O Laço centralizou tudo e nossa família pôde ajudar de verdade no planejamento.</p>
+        <div class="test-author">
+          <div class="test-avatar">J</div>
+          <div>
+            <div class="test-name">Julia & Pedro</div>
+            <div class="test-role">Casados em dezembro de 2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="cta-inner reveal">
+    <h2 class="cta-title">Pronto para planejar o dia <em>perfeito?</em></h2>
+    <p class="cta-sub">Comece hoje gratuitamente. Sem cartão de crédito, sem compromisso.</p>
+    <div class="cta-input-group">
+      <input class="cta-input" type="email" placeholder="seu@email.com">
+      <button class="cta-btn">Criar conta grátis</button>
+    </div>
+    <p class="cta-note">✓ 14 dias grátis no plano Casal &nbsp;·&nbsp; ✓ Cancele quando quiser</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Laç<span>o</span></div>
+  <div class="footer-links">
+    <a href="#">Funcionalidades</a>
+    <a href="#">Preços</a>
+    <a href="#">Privacidade</a>
+    <a href="#">Termos</a>
+    <a href="#">Contato</a>
+  </div>
+  <p class="footer-copy">© 2025 Laço. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
